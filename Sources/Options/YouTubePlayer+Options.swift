@@ -9,6 +9,9 @@ extension YouTubePlayer {
         
         /// The JSON string representation
         let json: String
+
+        /// Bool value if YouTube's own captions stay hidden
+        let hidesCaptions: Bool
         
     }
     
@@ -117,6 +120,8 @@ extension YouTubePlayer.Options {
         configuration[CodingKeys.playerVars.rawValue] = playerConfigurationJSON
         // Make JSON string from Configuration
         self.json = try configuration.jsonString()
+        // Set hides captions
+        self.hidesCaptions = playerConfiguration.hidesCaptions ?? false
     }
     
 }

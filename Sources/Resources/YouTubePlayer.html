@@ -46,6 +46,10 @@
         // The YouTube Player instance
         var player;
 
+        // Bool value if YouTube's own captions stay hidden
+        // The value will be replaced during runtime
+        var hidesCaptions = {{hidesCaptions}};
+
         // Configure YouTube Player
         window.YT.ready(() => {
             // Initialize YouTube Player
@@ -59,9 +63,22 @@
                 window.innerWidth,
                 window.innerHeight
             );
+            // Unload the captions module whenever YouTube loads it
+            // (onApiChange) or the playback state changes
+            if (hidesCaptions) {
+                player.addEventListener('onApiChange', unloadCaptions);
+                player.addEventListener('onStateChange', unloadCaptions);
+            }
             // Send onIframeAPIReady event
             sendYouTubePlayerEvent('onIframeAPIReady');
         });
+
+        // Unload YouTube's captions module
+        function unloadCaptions() {
+            if (player && player.unloadModule) {
+                player.unloadModule('captions');
+            }
+        }
 
         // Set YouTubePlayer Size
         function setYouTubePlayerSize(width, height) {

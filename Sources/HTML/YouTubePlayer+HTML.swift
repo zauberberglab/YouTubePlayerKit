@@ -43,6 +43,11 @@ extension YouTubePlayer.HTML {
             contentsOf: resourceURL,
             encoding: .utf8
         )
+        // Fill in the hides captions flag
+        htmlContents = htmlContents.replacingOccurrences(
+            of: "{{hidesCaptions}}",
+            with: options.hidesCaptions ? "true" : "false"
+        )
         // Format HTML contents string
         // with YouTubePlayer Options JSON
         htmlContents = .init(

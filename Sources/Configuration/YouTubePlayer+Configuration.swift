@@ -105,6 +105,10 @@ public extension YouTubePlayer {
         /// An optional custom user agent of the underlying web view
         public var customUserAgent: String?
 
+        /// Bool value if YouTube's own captions stay hidden, even after the viewer turns them on in the player.
+        /// Useful when the app draws its own subtitles over the video.
+        public var hidesCaptions: Bool?
+
         // MARK: Initializer
         
         /// Creates a new instance of `YouTubePlayer.Configuration`
@@ -131,7 +135,8 @@ public extension YouTubePlayer {
             showRelatedVideos: Bool? = nil,
             startTime: Int? = nil,
             referrer: String? = nil,
-            customUserAgent: String? = nil
+            customUserAgent: String? = nil,
+            hidesCaptions: Bool? = nil
         ) {
             self.automaticallyAdjustsContentInsets = automaticallyAdjustsContentInsets
             self.allowsPictureInPictureMediaPlayback = allowsPictureInPictureMediaPlayback
@@ -156,6 +161,7 @@ public extension YouTubePlayer {
             self.startTime = startTime
             self.referrer = referrer
             self.customUserAgent = customUserAgent
+            self.hidesCaptions = hidesCaptions
         }
         
     }
