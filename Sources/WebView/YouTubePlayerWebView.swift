@@ -53,6 +53,11 @@ final class YouTubePlayerWebView: WKWebView {
                 }
                 // No media types requiring user action for playback
                 configuration.mediaTypesRequiringUserActionForPlayback = []
+                // Keep the YouTube player working when the device is in Lockdown Mode,
+                // which otherwise applies to every WKWebView and breaks the embedded player
+                if #available(iOS 16.0, macOS 13.0, visionOS 1.0, *) {
+                    configuration.defaultWebpagePreferences.isLockdownModeEnabled = false
+                }
                 // Return configuration
                 return configuration
             }()
