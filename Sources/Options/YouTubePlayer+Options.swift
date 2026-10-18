@@ -11,7 +11,7 @@ extension YouTubePlayer {
         let json: String
 
         /// Bool value if YouTube's own captions stay hidden
-        let hidesCaptions: Bool
+        var hidesCaptions = false
         
     }
     
